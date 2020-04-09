@@ -103,7 +103,7 @@ export class Lexer {
           const type = tokens.INT;
           return newToken(type, literal);
         } else {
-          tok = newToken(tokens.ILLEGAL, "ILLEGAL");
+          tok = newToken(tokens.ILLEGAL, this.char);
         }
     }
     this.readChar();
