@@ -6,6 +6,10 @@
   "repository": "git@github.com:kuskoman/heliodor-lang.git",
   "author": "kkm <kubasurdej@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.1",
     "@types/node": "^13.11.1",
