@@ -53,7 +53,7 @@ export const tokens = {
   FALSE: "FALSE",
 };
 
-export const keywords = {
+export const keywords: KeywordsList = {
   const: tokens.CONST,
   let: tokens.LET,
   export: tokens.EXPORT,
@@ -66,8 +66,12 @@ export const keywords = {
 };
 
 export const lookupIdentifier = (ident: string): string => {
-  if (ident in keywords) {
+  if (keywords[ident]) {
     return keywords[ident];
   }
   return tokens.IDENT;
 };
+
+interface KeywordsList {
+  [key: string]: string;
+}
