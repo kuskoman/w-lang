@@ -1,0 +1,9 @@
+{
+  "name": "heliodor-lang",
+  "version": "0.0.1",
+  "description": "Scaffold of a programming language which aims on being compiled to web assembly",
+  "main": "dist/index.js",
+  "repository": "git@github.com:kuskoman/heliodor-lang.git",
+  "author": "kkm <kubasurdej@gmail.com>",
+  "license": "MIT"
+}
