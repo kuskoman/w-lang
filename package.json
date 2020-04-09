@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "repl": "ts-node src/index.ts",
+    "start": "yarn repl"
   },
   "devDependencies": {
     "@types/jest": "^25.2.1",
