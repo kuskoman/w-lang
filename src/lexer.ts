@@ -6,7 +6,13 @@ export class Lexer {
   private readPosition: number;
   private char: string;
 
-  constructor(input: string) {}
+  constructor(input: string) {
+    this.input = input;
+    this.char = "";
+    this.position = 0;
+    this.readPosition = 0;
+    this.readChar();
+  }
 
   public nextToken(): Token {
     let tok: Token;
@@ -84,7 +90,7 @@ export class Lexer {
           tok = newToken(tokens.BANG, this.char);
         }
         break;
-      case String.fromCharCode(0): // EOF
+      case "": // EOF, weird handling but seems to work
         tok = newToken(tokens.EOF, "");
         break;
       default:
@@ -122,10 +128,10 @@ export class Lexer {
 
   private eatWhitespace() {
     while (
-      this.char == " " ||
-      this.char == "\t" ||
-      this.char == "\n" ||
-      this.char == "\r"
+      this.char === " " ||
+      this.char === "\t" ||
+      this.char === "\n" ||
+      this.char === "\r"
     ) {
       this.readChar();
     }
@@ -135,7 +141,7 @@ export class Lexer {
     if (this.readPosition > this.input.length) {
       this.char = String.fromCharCode(0); // EOF
     } else {
-      this.char = this.input.charAt(0);
+      this.char = this.input.charAt(this.readPosition);
     }
     this.position = this.readPosition;
     this.readPosition += 1;
