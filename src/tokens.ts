@@ -5,6 +5,10 @@ export interface Token {
   literal: string;
 }
 
+export const newToken = (type: TokenType, literal: string): Token => {
+  return { type, literal };
+};
+
 export const tokens = {
   ILLEGAL: "ILLEGAL",
   EOF: "EOF",
