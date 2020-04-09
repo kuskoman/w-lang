@@ -65,4 +65,5 @@ export const lookupIdentifier = (ident: string): string => {
   if (ident in keywords) {
     return keywords[ident];
   }
+  return tokens.IDENT;
 };
