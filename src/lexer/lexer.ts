@@ -99,13 +99,15 @@ export class Lexer {
           const literal = this.readIdentifier();
           const type = lookupIdentifier(literal);
           return newToken(type, literal);
-        } else if (isDigit(this.char)) {
+        }
+
+        if (isDigit(this.char)) {
           const literal = this.readNumber();
           const type = tokens.INT;
           return newToken(type, literal);
-        } else {
-          tok = newToken(tokens.ILLEGAL, this.char);
         }
+
+        tok = newToken(tokens.ILLEGAL, this.char);
     }
     this.readChar();
     return tok;
