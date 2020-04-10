@@ -150,11 +150,12 @@ export class Lexer {
     this.readPosition += 1;
   }
 
-  private peekChar() {
-    if (this.readPosition >= this.input.length) {
+  private peekChar(relativeIndex: number = 0) {
+    const peekPosition = this.readPosition + relativeIndex;
+    if (peekPosition >= this.input.length || peekPosition < 0) {
       return String.fromCharCode(0); // EOF
     } else {
-      return this.input.charAt(this.readPosition);
+      return this.input.charAt(peekPosition);
     }
   }
 }
