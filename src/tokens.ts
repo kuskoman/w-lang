@@ -42,8 +42,7 @@ export const tokens = {
   RPAREN: ")",
 
   // Keywords
-  CONST: "CONST",
-  LET: "LET",
+  VAR: "VAR",
   EXPORT: "EXPORT",
   RETURN: "RETURN",
   FUNCTION: "FUNCTION",
@@ -54,8 +53,7 @@ export const tokens = {
 };
 
 export const keywords: KeywordsList = {
-  const: tokens.CONST,
-  let: tokens.LET,
+  var: tokens.VAR,
   export: tokens.EXPORT,
   return: tokens.RETURN,
   function: tokens.FUNCTION,

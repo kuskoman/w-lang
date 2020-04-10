@@ -3,11 +3,11 @@ import { Lexer } from "../src/lexer";
 
 describe("Lexer", () => {
   const input = `
-        const add = function(a, b) {
+        var add = function(a, b) {
             return a + b;
         };
-        const num = 5;
-        export let s = add(num, 5);
+        var num = 5;
+        export var s = add(num, 5);
         !-/*5
         5 < 10 > 5
 
@@ -21,7 +21,7 @@ describe("Lexer", () => {
   it("tokenizes input correctly", () => {
     const lexer = new Lexer(input);
     const expectedTokens: Token[] = [
-      { type: tokens.CONST, literal: "const" },
+      { type: tokens.VAR, literal: "var" },
       { type: tokens.IDENT, literal: "add" },
       { type: tokens.ASSIGN, literal: "=" },
       { type: tokens.FUNCTION, literal: "function" },
@@ -38,13 +38,13 @@ describe("Lexer", () => {
       { type: tokens.SEMICOLON, literal: ";" },
       { type: tokens.RBRACE, literal: "}" },
       { type: tokens.SEMICOLON, literal: ";" },
-      { type: tokens.CONST, literal: "const" },
+      { type: tokens.VAR, literal: "var" },
       { type: tokens.IDENT, literal: "num" },
       { type: tokens.ASSIGN, literal: "=" },
       { type: tokens.INT, literal: "5" },
       { type: tokens.SEMICOLON, literal: ";" },
       { type: tokens.EXPORT, literal: "export" },
-      { type: tokens.LET, literal: "let" },
+      { type: tokens.VAR, literal: "var" },
       { type: tokens.IDENT, literal: "s" },
       { type: tokens.ASSIGN, literal: "=" },
       { type: tokens.IDENT, literal: "add" },
