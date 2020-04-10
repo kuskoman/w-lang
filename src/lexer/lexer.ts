@@ -1,4 +1,5 @@
 import { Token, tokens, newToken, lookupIdentifier } from "./tokens";
+import { isDigit, isIdentifierCharacter } from "./utils/characterUtils";
 
 export class Lexer {
   private input: string;
@@ -94,11 +95,11 @@ export class Lexer {
         tok = newToken(tokens.EOF, "");
         break;
       default:
-        if (this.isLetter(this.char)) {
+        if (isIdentifierCharacter(this.char)) {
           const literal = this.readIdentifier();
           const type = lookupIdentifier(literal);
           return newToken(type, literal);
-        } else if (this.isDigit(this.char)) {
+        } else if (isDigit(this.char)) {
           const literal = this.readNumber();
           const type = tokens.INT;
           return newToken(type, literal);
@@ -112,7 +113,7 @@ export class Lexer {
 
   private readIdentifier(): string {
     const position = this.position;
-    while (this.isLetter(this.char)) {
+    while (isIdentifierCharacter(this.char)) {
       this.readChar();
     }
     return this.input.slice(position, this.position);
@@ -120,7 +121,7 @@ export class Lexer {
 
   private readNumber(): string {
     const position = this.position;
-    while (this.isDigit(this.char)) {
+    while (isDigit(this.char)) {
       this.readChar();
     }
     return this.input.slice(position, this.position);
@@ -153,13 +154,5 @@ export class Lexer {
     } else {
       return this.input.charAt(this.readPosition);
     }
-  }
-
-  private isLetter(char: string): boolean {
-    return !!(char.length === 1 && char.match(/[_a-z]/i)); // allowed letters and underscore
-  }
-
-  private isDigit(char: string): boolean {
-    return !!(char.length === 1 && char.match(/[0-9]/i));
   }
 }
