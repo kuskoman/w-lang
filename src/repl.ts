@@ -1,5 +1,5 @@
-import { Lexer } from "./lexer";
-import { tokens } from "./tokens";
+import { Lexer } from "./lexer/lexer";
+import { tokens } from "./lexer/tokens";
 
 export class Repl {
   private PROMPT = "> ";

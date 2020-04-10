@@ -1,5 +1,5 @@
-import { tokens, Token } from "../src/tokens";
-import { Lexer } from "../src/lexer";
+import { tokens, Token } from "../src/lexer/tokens";
+import { Lexer } from "../src/lexer/lexer";
 
 describe("Lexer", () => {
   const input = `
