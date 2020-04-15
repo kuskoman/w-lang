@@ -31,6 +31,12 @@ export class Lexer {
       case ";":
         tok = newToken(tokens.SEMICOLON, this.char);
         break;
+      case "{":
+        tok = newToken(tokens.LBRACE, this.char);
+        break;
+      case "}":
+        tok = newToken(tokens.RBRACE, this.char);
+        break;
       case "(":
         tok = newToken(tokens.LPAREN, this.char);
         break;

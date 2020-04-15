@@ -4,6 +4,8 @@ export const tokens = {
   IDENT: "IDENT",
   LPAREN: "(",
   RPAREN: ")",
+  LBRACE: "{",
+  RBRACE: "}",
   ASSIGN: "=",
   WHILE: "WHILE",
   SEMICOLON: ";",
