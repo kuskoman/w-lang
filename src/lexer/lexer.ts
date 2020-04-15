@@ -70,6 +70,7 @@ export class Lexer {
 
   private getFullIdent(): string {
     const position = this.position;
+    this.readChar(); // we are checking first char in switch default
     while (isIdentifierCharacter(this.char)) {
       this.readChar();
     }

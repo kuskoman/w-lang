@@ -3,7 +3,7 @@ import { Lexer } from "../src/lexer/lexer";
 
 describe("Lexer", () => {
   const input = `
-        var digit = 5;
+        var _digit = 5;
         var num = (1337);
         while (1) { 90 }
         @
@@ -13,7 +13,7 @@ describe("Lexer", () => {
     const lexer = new Lexer(input);
     const expectedTokens: Token[] = [
       { type: tokens.VAR, literal: "var" },
-      { type: tokens.IDENT, literal: "digit" },
+      { type: tokens.IDENT, literal: "_digit" },
       { type: tokens.ASSIGN, literal: "=" },
       { type: tokens.INT, literal: "5" },
       { type: tokens.SEMICOLON, literal: ";" },
