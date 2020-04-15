@@ -7,5 +7,5 @@ export const isDigit = (char: string): boolean => {
 };
 
 export const isIdentifierCharacter = (char: string) => {
-  return !!(char.length === 1 && char.match(/[a-z0-9]/i));
+  return !!(char.length === 1 && char.match(/[_a-z0-9]/i));
 };
