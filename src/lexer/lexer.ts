@@ -61,6 +61,7 @@ export class Lexer {
 
         tok = newToken(tokens.ILLEGAL, this.char);
     }
+    this.readChar();
     return tok;
   }
 
