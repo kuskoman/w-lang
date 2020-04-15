@@ -10,6 +10,7 @@ export const tokens = {
   WHILE: "WHILE",
   SEMICOLON: ";",
   ILLEGAL: "ILLEGAL",
+  EOF: "EOF",
 };
 
 export type TokenType = string; // "keyof typeof tokens" causes errors when used with tokens.property

@@ -46,6 +46,9 @@ export class Lexer {
       case "=":
         tok = newToken(tokens.ASSIGN, this.char);
         break;
+      case "": // EOF, weird handling but seems to work
+        tok = newToken(tokens.EOF, "");
+        break;
       default:
         if (isIdentifierFirstCharacter(this.char)) {
           const literal = this.getFullIdent();
