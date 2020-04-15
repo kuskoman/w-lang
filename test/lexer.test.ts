@@ -32,6 +32,7 @@ describe("Lexer", () => {
       { type: tokens.INT, literal: "90" },
       { type: tokens.RBRACE, literal: "}" },
       { type: tokens.ILLEGAL, literal: "@" },
+      { type: tokens.EOF, literal: "" },
     ];
 
     expectedTokens.forEach((expectedTok) => {
