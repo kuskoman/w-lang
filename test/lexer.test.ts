@@ -23,6 +23,7 @@ describe("Lexer", () => {
       { type: tokens.LPAREN, literal: "(" },
       { type: tokens.INT, literal: "1337" },
       { type: tokens.RPAREN, literal: ")" },
+      { type: tokens.SEMICOLON, literal: ";" },
       { type: tokens.WHILE, literal: "while" },
       { type: tokens.LPAREN, literal: "(" },
       { type: tokens.INT, literal: "1" },
