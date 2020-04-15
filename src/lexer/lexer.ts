@@ -1,5 +1,10 @@
-import { Token, tokens, newToken, lookupIdentifier } from "./tokens";
-import { isDigit, isIdentifierCharacter } from "./utils/characterUtils";
+import { Token, newToken, tokens } from "./tokens";
+import {
+  isIdentifierFirstCharacter,
+  isIdentifierCharacter,
+  isDigit,
+} from "./utils/characterUtils";
+import { lookupIdentifier } from "./keywords";
 
 export class Lexer {
   private input: string;
@@ -21,30 +26,10 @@ export class Lexer {
 
     switch (this.char) {
       case "=":
-        {
-          if (this.peekChar() === "=") {
-            const ch = this.char;
-            this.readChar();
-            tok = newToken(tokens.EQUAL, `${ch}${this.char}`);
-          } else {
-            tok = newToken(tokens.ASSIGN, this.char);
-          }
-        }
+        tok = newToken(tokens.ASSIGN, this.char);
         break;
       case ";":
         tok = newToken(tokens.SEMICOLON, this.char);
-        break;
-      case ";":
-        tok = newToken(tokens.SEMICOLON, this.char);
-        break;
-      case ",":
-        tok = newToken(tokens.COMMA, this.char);
-        break;
-      case "(":
-        tok = newToken(tokens.LPAREN, this.char);
-        break;
-      case ")":
-        tok = newToken(tokens.RPAREN, this.char);
         break;
       case "{":
         tok = newToken(tokens.LBRACE, this.char);
@@ -52,57 +37,27 @@ export class Lexer {
       case "}":
         tok = newToken(tokens.RBRACE, this.char);
         break;
-      case "+":
-        tok = newToken(tokens.ADD, this.char);
+      case "(":
+        tok = newToken(tokens.LPAREN, this.char);
         break;
-      case "-":
-        tok = newToken(tokens.SUBSTRACT, this.char);
+      case ")":
+        tok = newToken(tokens.RPAREN, this.char);
         break;
-      case "/":
-        tok = newToken(tokens.DIVIDE, this.char);
-        break;
-      case "*":
-        tok = newToken(tokens.MULTIPLY, this.char);
-        break;
-      case ">":
-        if (this.peekChar() === "=") {
-          const ch = this.char;
-          this.readChar();
-          tok = newToken(tokens.EQUAL_OR_GREATER, `${ch}${this.char}`);
-        } else {
-          tok = newToken(tokens.GREATER, this.char);
-        }
-        break;
-      case "<":
-        if (this.peekChar() === "=") {
-          const ch = this.char;
-          this.readChar();
-          tok = newToken(tokens.EQUAL_OR_LOWER, `${ch}${this.char}`);
-        } else {
-          tok = newToken(tokens.LOWER, this.char);
-        }
-        break;
-      case "!":
-        if (this.peekChar() === "=") {
-          const ch = this.char;
-          this.readChar();
-          tok = newToken(tokens.NOT_EQUAL, `${ch}${this.char}`);
-        } else {
-          tok = newToken(tokens.BANG, this.char);
-        }
+      case "=":
+        tok = newToken(tokens.ASSIGN, this.char);
         break;
       case "": // EOF, weird handling but seems to work
         tok = newToken(tokens.EOF, "");
         break;
       default:
-        if (isIdentifierCharacter(this.char)) {
-          const literal = this.readIdentifier();
+        if (isIdentifierFirstCharacter(this.char)) {
+          const literal = this.getFullIdent();
           const type = lookupIdentifier(literal);
           return newToken(type, literal);
         }
 
         if (isDigit(this.char)) {
-          const literal = this.readNumber();
+          const literal = this.readInteger();
           const type = tokens.INT;
           return newToken(type, literal);
         }
@@ -113,15 +68,16 @@ export class Lexer {
     return tok;
   }
 
-  private readIdentifier(): string {
+  private getFullIdent(): string {
     const position = this.position;
+    this.readChar(); // we are checking first char in switch default
     while (isIdentifierCharacter(this.char)) {
       this.readChar();
     }
     return this.input.slice(position, this.position);
   }
 
-  private readNumber(): string {
+  private readInteger() {
     const position = this.position;
     while (isDigit(this.char)) {
       this.readChar();

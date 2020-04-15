@@ -3,87 +3,35 @@ import { Lexer } from "../src/lexer/lexer";
 
 describe("Lexer", () => {
   const input = `
-        var add = function(a, b) {
-            return a + b;
-        };
-        var num = 5;
-        export var s = add(num, 5);
-        !-/*5
-        5 < 10 > 5
-
-        if (true != true) {
-            return false == false;
-        } else {
-            return true;
-        };
+        var _d_igit = 5;
+        var nUm = (1337);
+        while (1) { 90 }
+        @
         `;
 
   it("tokenizes input correctly", () => {
     const lexer = new Lexer(input);
     const expectedTokens: Token[] = [
       { type: tokens.VAR, literal: "var" },
-      { type: tokens.IDENT, literal: "add" },
+      { type: tokens.IDENT, literal: "_d_igit" },
       { type: tokens.ASSIGN, literal: "=" },
-      { type: tokens.FUNCTION, literal: "function" },
-      { type: tokens.LPAREN, literal: "(" },
-      { type: tokens.IDENT, literal: "a" },
-      { type: tokens.COMMA, literal: "," },
-      { type: tokens.IDENT, literal: "b" },
-      { type: tokens.RPAREN, literal: ")" },
-      { type: tokens.LBRACE, literal: "{" },
-      { type: tokens.RETURN, literal: "return" },
-      { type: tokens.IDENT, literal: "a" },
-      { type: tokens.ADD, literal: "+" },
-      { type: tokens.IDENT, literal: "b" },
-      { type: tokens.SEMICOLON, literal: ";" },
-      { type: tokens.RBRACE, literal: "}" },
+      { type: tokens.INT, literal: "5" },
       { type: tokens.SEMICOLON, literal: ";" },
       { type: tokens.VAR, literal: "var" },
-      { type: tokens.IDENT, literal: "num" },
+      { type: tokens.IDENT, literal: "nUm" },
       { type: tokens.ASSIGN, literal: "=" },
-      { type: tokens.INT, literal: "5" },
-      { type: tokens.SEMICOLON, literal: ";" },
-      { type: tokens.EXPORT, literal: "export" },
-      { type: tokens.VAR, literal: "var" },
-      { type: tokens.IDENT, literal: "s" },
-      { type: tokens.ASSIGN, literal: "=" },
-      { type: tokens.IDENT, literal: "add" },
       { type: tokens.LPAREN, literal: "(" },
-      { type: tokens.IDENT, literal: "num" },
-      { type: tokens.COMMA, literal: "," },
-      { type: tokens.INT, literal: "5" },
+      { type: tokens.INT, literal: "1337" },
       { type: tokens.RPAREN, literal: ")" },
       { type: tokens.SEMICOLON, literal: ";" },
-      { type: tokens.BANG, literal: "!" },
-      { type: tokens.SUBSTRACT, literal: "-" },
-      { type: tokens.DIVIDE, literal: "/" },
-      { type: tokens.MULTIPLY, literal: "*" },
-      { type: tokens.INT, literal: "5" },
-      { type: tokens.INT, literal: "5" },
-      { type: tokens.LOWER, literal: "<" },
-      { type: tokens.INT, literal: "10" },
-      { type: tokens.GREATER, literal: ">" },
-      { type: tokens.INT, literal: "5" },
-      { type: tokens.IF, literal: "if" },
+      { type: tokens.WHILE, literal: "while" },
       { type: tokens.LPAREN, literal: "(" },
-      { type: tokens.TRUE, literal: "true" },
-      { type: tokens.NOT_EQUAL, literal: "!=" },
-      { type: tokens.TRUE, literal: "true" },
+      { type: tokens.INT, literal: "1" },
       { type: tokens.RPAREN, literal: ")" },
       { type: tokens.LBRACE, literal: "{" },
-      { type: tokens.RETURN, literal: "return" },
-      { type: tokens.FALSE, literal: "false" },
-      { type: tokens.EQUAL, literal: "==" },
-      { type: tokens.FALSE, literal: "false" },
-      { type: tokens.SEMICOLON, literal: ";" },
+      { type: tokens.INT, literal: "90" },
       { type: tokens.RBRACE, literal: "}" },
-      { type: tokens.ELSE, literal: "else" },
-      { type: tokens.LBRACE, literal: "{" },
-      { type: tokens.RETURN, literal: "return" },
-      { type: tokens.TRUE, literal: "true" },
-      { type: tokens.SEMICOLON, literal: ";" },
-      { type: tokens.RBRACE, literal: "}" },
-      { type: tokens.SEMICOLON, literal: ";" },
+      { type: tokens.ILLEGAL, literal: "@" },
       { type: tokens.EOF, literal: "" },
     ];
 
