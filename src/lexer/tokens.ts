@@ -6,6 +6,7 @@ export const tokens = {
   RPAREN: ")",
   ASSIGN: "=",
   WHILE: "WHILE",
+  SEMICOLON: ";",
 };
 
 export type TokenType = keyof typeof tokens;
