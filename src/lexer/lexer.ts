@@ -66,7 +66,7 @@ export class Lexer {
 
   private getFullIdent(): string {
     const position = this.position;
-    while (isIdentifierCharacter(this.peekChar())) {
+    while (isIdentifierCharacter(this.char)) {
       this.readChar();
     }
     return this.input.slice(position, this.position);
