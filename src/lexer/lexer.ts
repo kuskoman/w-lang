@@ -12,6 +12,17 @@ export class Lexer {
     this.readChar();
   }
 
+  private eatWhitespace() {
+    while (
+      this.char === " " ||
+      this.char === "\t" ||
+      this.char === "\n" ||
+      this.char === "\r"
+    ) {
+      this.readChar();
+    }
+  }
+
   private readChar() {
     if (this.readPosition > this.input.length) {
       this.char = String.fromCharCode(0); // EOF
