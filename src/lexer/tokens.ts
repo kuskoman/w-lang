@@ -14,10 +14,8 @@ export type TokenType = keyof typeof tokens;
 export interface Token {
   type: TokenType;
   literal: string;
-  position: Position;
 }
 
-export interface Position {
-  line: number;
-  column: number;
-}
+export const newToken = (type: TokenType, literal: string): Token => {
+  return { type, literal };
+};
